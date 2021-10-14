@@ -1,12 +1,18 @@
-<form method="POST" action="{{route('attendancegroup.store')}}">
+@extends('layouts.app')
 
-    Name: <input type="text" name="attendancegroup_name">
-    Description: <input type="text" name="attendancegroup_description">
-    Difficulty: <input type="text" name="attendancegroup_difficulty">
-    School ID: <input type="number" name="attendancegroup_school_id">
+@section('content')
 
-    @csrf
+    <form method="POST" action="{{route('attendancegroup.store')}}">
 
-    <button type="submit"> Create </button>
+        Name: <input type="text" name="attendancegroup_name">
+        Description: <input type="text" name="attendancegroup_description">
+        Difficulty: <input type="text" name="attendancegroup_difficulty">
+        School ID: <input type="number" name="attendancegroup_school_id">
 
-</form>
+        @csrf
+
+        <button type="submit"> Create </button>
+
+    </form>
+
+@endsection

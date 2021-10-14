@@ -1,12 +1,18 @@
-<form method="POST" action="{{route('attendancegroup.update', [$attendancegroup])}}">
+@extends('layouts.app')
 
-    Name: <input type="text" name="attendancegroup_name" value="{{$attendancegroup->name}}">
-    Description: <input type="text" name="attendancegroup_description" value="{{$attendancegroup->description}}">
-    Difficulty: <input type="text" name="attendancegroup_difficulty"  value="{{$attendancegroup->difficulty}}">
-    School ID: <input type="number" name="attendancegroup_school_id"  value="{{$attendancegroup->school_id}}">
+@section('content')
 
-    @csrf
+    <form method="POST" action="{{route('attendancegroup.update', [$attendancegroup])}}">
 
-    <button type="submit"> Edit </button>
+        Name: <input type="text" name="attendancegroup_name" value="{{$attendancegroup->name}}">
+        Description: <input type="text" name="attendancegroup_description" value="{{$attendancegroup->description}}">
+        Difficulty: <input type="text" name="attendancegroup_difficulty"  value="{{$attendancegroup->difficulty}}">
+        School ID: <input type="number" name="attendancegroup_school_id"  value="{{$attendancegroup->school_id}}">
 
-</form>
+        @csrf
+
+        <button type="submit"> Edit </button>
+
+    </form>
+
+@endsection

@@ -1,30 +1,36 @@
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Difficulty</th>
-        <th>School ID</th>
-    </tr>
+@extends('layouts.app')
 
-    @foreach ($attendancegroups as $attendancegroup )
+@section('content')
 
+    <table>
         <tr>
-            <td>{{ $attendancegroup->id }}</td>
-            <td><a href="{{route('attendancegroup.show', [$attendancegroup])}}">{{ $attendancegroup->name }}</a></td>
-            <td>{{ $attendancegroup->description }}</td>
-            <td>{{ $attendancegroup->difficulty }}</td>
-            <td>{{ $attendancegroup->school_id }}</td>
-            <td><a href="{{route('attendancegroup.edit', [$attendancegroup])}}">Edit</a>
-
-                <form method="POST" action="{{route('attendancegroup.destroy', [$attendancegroup]) }}">
-                    @csrf
-                    <button type="submit">Delete</button>
-                </form>
-            </td>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Difficulty</th>
+            <th>School ID</th>
         </tr>
 
-    @endforeach
+        @foreach ($attendancegroups as $attendancegroup )
+
+            <tr>
+                <td>{{ $attendancegroup->id }}</td>
+                <td><a href="{{route('attendancegroup.show', [$attendancegroup])}}">{{ $attendancegroup->name }}</a></td>
+                <td>{{ $attendancegroup->description }}</td>
+                <td>{{ $attendancegroup->difficulty }}</td>
+                <td>{{ $attendancegroup->school_id }}</td>
+                <td><a href="{{route('attendancegroup.edit', [$attendancegroup])}}">Edit</a>
+
+                    <form method="POST" action="{{route('attendancegroup.destroy', [$attendancegroup]) }}">
+                        @csrf
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+
+        @endforeach
 
 
-</table>
+    </table>
+
+@endsection

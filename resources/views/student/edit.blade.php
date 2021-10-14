@@ -1,12 +1,18 @@
-<form method="POST" action="{{route('student.update', [$student])}}">
+@extends('layouts.app')
 
-    Name: <input type="text" name="student_name" value="{{$student->name}}">
-    Surname: <input type="text" name="student_surname" value="{{$student->surname}}">
-    Group ID: <input type="number" name="student_group_id"  value="{{$student->group_id}}">
-    Image Url: <input type="url" name="student_image_url"  value="{{$student->image_url}}">
+@section('content')
 
-    @csrf
+    <form method="POST" action="{{route('student.update', [$student])}}">
 
-    <button type="submit"> Edit </button>
+        Name: <input type="text" name="student_name" value="{{$student->name}}">
+        Surname: <input type="text" name="student_surname" value="{{$student->surname}}">
+        Group ID: <input type="number" name="student_group_id"  value="{{$student->group_id}}">
+        Image Url: <input type="url" name="student_image_url"  value="{{$student->image_url}}">
 
-</form>
+        @csrf
+
+        <button type="submit"> Edit </button>
+
+    </form>
+
+@endsection

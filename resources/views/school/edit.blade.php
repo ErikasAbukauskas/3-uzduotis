@@ -1,12 +1,18 @@
-<form method="POST" action="{{route('school.update', [$school])}}">
+@extends('layouts.app')
 
-    Name: <input type="text" name="school_name" value="{{$school->name}}">
-    Description: <input type="text" name="school_description" value="{{$school->description}}">
-    Place: <input type="text" name="school_place"  value="{{$school->place}}">
-    Phone: <input type="number" name="school_phone"  value="{{$school->phone}}">
+@section('content')
 
-    @csrf
+    <form method="POST" action="{{route('school.update', [$school])}}">
 
-    <button type="submit"> Edit </button>
+        Name: <input type="text" name="school_name" value="{{$school->name}}">
+        Description: <input type="text" name="school_description" value="{{$school->description}}">
+        Place: <input type="text" name="school_place"  value="{{$school->place}}">
+        Phone: <input type="number" name="school_phone"  value="{{$school->phone}}">
 
-</form>
+        @csrf
+
+        <button type="submit"> Edit </button>
+
+    </form>
+
+@endsection

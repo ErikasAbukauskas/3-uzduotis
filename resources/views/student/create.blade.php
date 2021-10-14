@@ -1,12 +1,18 @@
-<form method="POST" action="{{route('student.store')}}">
+@extends('layouts.app')
 
-    Name: <input type="text" name="student_name">
-    Surname: <input type="text" name="student_surname">
-    Group ID: <input type="number" name="student_group_id">
-    Image Url: <input type="url" name="student_image_url">
+@section('content')
 
-    @csrf
+    <form method="POST" action="{{route('student.store')}}">
 
-    <button type="submit"> Create </button>
+        Name: <input type="text" name="student_name">
+        Surname: <input type="text" name="student_surname">
+        Group ID: <input type="number" name="student_group_id">
+        Image Url: <input type="url" name="student_image_url">
 
-</form>
+        @csrf
+
+        <button type="submit"> Create </button>
+
+    </form>
+
+@endsection
