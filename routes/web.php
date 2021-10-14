@@ -26,6 +26,7 @@ Route::prefix('students')->group(function () {
     Route::post('update/{student}','StudentController@update')->name('student.update')->middleware("auth");
     Route::post('delete/{student}','StudentController@destroy')->name('student.destroy')->middleware("auth");
     Route::get('show/{student}','StudentController@show')->name('student.show')->middleware("auth");
+    Route::post('image-upload', 'ImageUploadController@imageUploadPost')->name('image.upload.post');
 });
 
 Route::prefix('attendancegroups')->group(function () {
