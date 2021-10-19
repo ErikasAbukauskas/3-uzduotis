@@ -9,4 +9,6 @@
     <p>{{$student->group_id}}</p>
     <p>{{$student->image_url}}</p>
 
+    <img src="{{$student->image_url}}" alt='{{$student->name}}' width="200"/>
+
 @endsection

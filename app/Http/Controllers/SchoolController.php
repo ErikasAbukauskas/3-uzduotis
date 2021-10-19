@@ -45,6 +45,7 @@ class SchoolController extends Controller
 
         $school->save();
 
+
         return redirect()->route("school.index");
     }
 

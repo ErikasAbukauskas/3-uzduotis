@@ -25,7 +25,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view("student.create");
+        return view('student.create');
     }
 
     /**
@@ -38,10 +38,33 @@ class StudentController extends Controller
     {
         $student = new Student;
 
+        //duomenu bazes laukelio pavadinimas = input laukelio pavadinimas
         $student->name= $request->student_name;
         $student->surname= $request->student_surname;
-        $student->group_id= $request->student_group_id;
-        $student->image_url= $request->student_image_url;
+        $student->group_id= $request->student_groupid;
+
+        // patikrina ar laukelis tuscias ar netuscias
+        // jeigu laukelis netuscias - grazina true
+        // jeigu laukelis tuscias - grazina false
+        if($request->has('student_imageurl')){
+            // turime atlikti du veiksmus:
+            // 1. mes turime paveiklsiuk/info apie paveiksliuka irasyti i duomenu baze
+
+            $imageName = time().'.'.$request->student_imageurl->extension();
+            $student->image_url= '/images/'.$imageName; // atvaizdavimui prirasome '/images/.
+            //paveiksliukas isikele i duomenu baze
+
+            // 2. turiu kazkur ikelti/patalpinti paveiksliuka
+
+            $request->student_imageurl->move(public_path('images'), $imageName);
+            // irasome teksta koki inputui daveme pavadinima - name="student_imageurl"
+            // perkles dokumenta kuris yra is formos i images aplanka
+            // bus perkeltas i public aplanka kur yra images
+
+        } else {
+            $student->image_url= '/images/placeholder.png';
+            // pirma reikia isikelti paveiksliuka i images folderi su pavadinimu placeholder.png (gali buti kitas pavadinimas)
+        }
 
         $student->save();
 
@@ -79,10 +102,23 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
+        //duomenu bazes laukelio pavadinimas = input laukelio pavadinimas
         $student->name= $request->student_name;
         $student->surname= $request->student_surname;
-        $student->group_id= $request->student_group_id;
-        $student->image_url= $request->student_image_url;
+        $student->group_id= $request->student_groupid;
+
+
+        if($request->has('student_imageurl')){
+
+
+            $imageName = time().'.'.$request->student_imageurl->extension();
+            $student->image_url= '/images/'.$imageName;
+
+            $request->student_imageurl->move(public_path('images'), $imageName);
+
+        }
+        // jeigu editinant paveiksliukas uzpildytas tik tada iterpiam i ji kazka naujo
+        // jeigu neuzpildytas tada nieko ir nedarom
 
         $student->save();
 

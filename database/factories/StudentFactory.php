@@ -10,6 +10,6 @@ $factory->define(Student::class, function (Faker $faker) {
         'name' => $faker->firstName(),
         'surname' => $faker->name(),
         'group_id' => rand(1,15),
-        'image_url' => $faker->url()
+        'image_url' => $faker->imageUrl(300, 300, "animals", true)
     ];
 });
