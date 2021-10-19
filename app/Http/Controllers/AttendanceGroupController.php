@@ -14,7 +14,7 @@ class AttendanceGroupController extends Controller
      */
     public function index()
     {
-        $attendancegroups = AttendanceGroup::all();
+        $attendancegroups = AttendanceGroup::all(); // (AttendanceGroup - cia yra klase todel rasome pirma didzioji ir Group didzioji, klases rasomos is didziosios raides)
         return view("attendancegroup.index", ["attendancegroups"=>$attendancegroups]);
     }
 
@@ -36,16 +36,19 @@ class AttendanceGroupController extends Controller
      */
     public function store(Request $request)
     {
+
         $attendancegroup = new AttendanceGroup;
 
-        $attendancegroup->name= $request->attendancegroup_name;
-        $attendancegroup->description= $request->attendancegroup_description;
-        $attendancegroup->difficulty= $request->attendancegroup_difficulty;
-        $attendancegroup->school_id= $request->attendancegroup_school_id;
 
-        $attendancegroup->save();
+        //DB stulpelio pavadinimas(name) = input laukelio vardas(client_name)
+        $attendancegroup->name = $request->group_name;
+        $attendancegroup->description = $request->group_description;
+        $attendancegroup->difficulty = $request->group_difficulty;
+        $attendancegroup->school_id = $request->group_schoolid;
 
-        return redirect()->route("attendancegroup.index");
+        $attendancegroup->save(); // insert komada i duomenu baze
+
+        return redirect()->route("attendancegroup.index"); // redirect tas pats kas header:location
     }
 
     /**
@@ -56,7 +59,7 @@ class AttendanceGroupController extends Controller
      */
     public function show(AttendanceGroup $attendancegroup)
     {
-        return view('attendancegroup.show', ['attendancegroup'=>$attendancegroup]);
+        return view("attendancegroup.show", ["attendancegroup"=>$attendancegroup]);
     }
 
     /**
@@ -79,10 +82,10 @@ class AttendanceGroupController extends Controller
      */
     public function update(Request $request, AttendanceGroup $attendancegroup)
     {
-        $attendancegroup->name= $request->attendancegroup_name;
-        $attendancegroup->description= $request->attendancegroup_description;
-        $attendancegroup->difficulty= $request->attendancegroup_difficulty;
-        $attendancegroup->school_id= $request->attendancegroup_school_id;
+        $attendancegroup->name = $request->group_name;
+        $attendancegroup->description = $request->group_description;
+        $attendancegroup->difficulty = $request->group_difficulty;
+        $attendancegroup->school_id = $request->group_schoolid;
 
         $attendancegroup->save();
 

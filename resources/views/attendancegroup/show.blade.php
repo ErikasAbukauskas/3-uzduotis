@@ -13,7 +13,6 @@
     <p>{{$attendancegroup->difficulty}}</p>
     <p>School ID:</p>
     <p>{{$attendancegroup->school_id}}</p>
-    <p>Logo</p>
 
 
 @endsection
