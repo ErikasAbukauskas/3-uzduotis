@@ -26,8 +26,10 @@
                 <td>{{ $student->surname }}</td>
                 <td>{{ $student->group_id }}</td>
                 <td>{{ $student->image_url }}</td>
-                <td>
 
+
+
+                <td>
 
                     <div class="btn-group">
                         <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Action
@@ -42,6 +44,7 @@
                         </form>
                       </div>
                 </td>
+
                   <td><img src="{{ $student->image_url }}" alt="{{$student->name}}" width="200"/></td>
             </tr>
 
